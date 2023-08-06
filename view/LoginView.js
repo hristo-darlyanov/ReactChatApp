@@ -50,7 +50,7 @@ export default function LoginView({navigation}){
             <View
             style={{marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center'}}>
               <Text style={{color: 'gray', fontWeight: '600', fontSize: 14}}>Dont have an account? </Text>
-              <TouchableOpacity onPress={() => navigation.navigate("RegisterView")}>
+              <TouchableOpacity onPress={() => navigation.navigate("Register")}>
                 <Text style={{color: 'orange', fontWeight: '600', fontSize: 14}}>Sign Up</Text>
               </TouchableOpacity>
             </View>
