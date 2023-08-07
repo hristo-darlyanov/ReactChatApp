@@ -2,6 +2,7 @@ import { Alert, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } fro
 import React, { useState } from 'react'
 import { auth } from '../config/Firebase'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const backImage = require("../assets/backImage.png");
 
@@ -10,9 +11,7 @@ export default function RegisterView({navigation}){
     const [password, setPassword] = useState("");
 
     const handleLogin = () => {
-        if (email !== "" && password !== ""){
-            auth
-            .createUserWithEmailAndPassword(email, password)
+        if (email !== "" && password !== ""){createUserWithEmailAndPassword(auth, email, password)
             .then(() => console.log("Sign Up succeeded"))
             .catch(err => Alert.alert(err.message));
         }
