@@ -43,12 +43,12 @@ function RootNavigator() {
   const {user, setUser } = useContext(AuthenticatedUserContext);
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth,
+    const unsubscribeAuth = onAuthStateChanged(auth,
       async authenticatedUser => {
         authenticatedUser ? setUser(authenticatedUser) : setUser(null);
         setLoading(false)
       });
-      return () => unsubscribe()
+      return () => unsubscribeAuth()
   }, [user]);
   if (loading) {
     return (
