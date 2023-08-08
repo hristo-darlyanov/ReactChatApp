@@ -29,23 +29,22 @@ export default function ChatView() {
   })}, [navigation])
 
   useLayoutEffect(() => {
-
-        const collectionRef = collection(database, 'chats');
-        const q = query(collectionRef, orderBy('createdAt', 'desc'));
+    const collectionRef = collection(database, 'chats');
+    const q = query(collectionRef, orderBy('createdAt', 'desc'));
 
     const unsubscribe = onSnapshot(q, querySnapshot => {
-        console.log('querySnapshot unsusbscribe');
-          setMessages(
-            querySnapshot.docs.map(doc => ({
-              _id: doc.data()._id,
-              createdAt: doc.data().createdAt.toDate(),
-              text: doc.data().text,
-              user: doc.data().user
-            }))
-          );
-        });
+      console.log('querySnapshot unsusbscribe');
+      setMessages(
+        querySnapshot.docs.map(doc => ({
+          _id: doc.data()._id,
+          createdAt: doc.data().createdAt.toDate(),
+          text: doc.data().text,
+          user: doc.data().user
+        }))
+      );
+    });
     return unsubscribe;
-      }, []);
+  }, []);
   
   const onSend = useCallback((messages = []) => {
     setMessages(previousChanges => GiftedChat.append(previousChanges, messages))
